@@ -9,6 +9,8 @@ class Reaction extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     const LIKED = 1;
     const DISLIKED = 2;
 

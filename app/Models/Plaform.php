@@ -9,6 +9,8 @@ class Plaform extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);

@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     //Relacion uno a muchos 
     public function courses(){
         return $this->hasMany(Course::class);
