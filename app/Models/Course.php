@@ -14,6 +14,16 @@ class Course extends Model
     const PUBLICADO = 3;
 
     protected $guarded = ['id', 'status'];
+    protected $withCount = ['students', 'reviews'];
+
+    public function getRatingAttribute()
+    {
+        if ($this->reviews_count) {
+            return round($this->reviews->avg('rating'),1);
+        }else{
+            return 5;
+        }
+    }
 
     // relacion uno a muchos inversa
     public function teacher()
