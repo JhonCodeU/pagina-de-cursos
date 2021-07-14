@@ -75,6 +75,14 @@ class User extends Authenticatable
     public function reviews(){
         return $this->hasMany(Review::class);
     }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
+    }
 
     // Relacion muchos a muchos
     public function courses_enrolled()
