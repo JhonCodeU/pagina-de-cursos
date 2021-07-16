@@ -5,6 +5,11 @@
             'name' => 'Home',
             'route' => route('dashboard'),
             'active' => request()->routeIs('home')
+        ],
+        [
+            'name' => 'Courses',
+            'route' => route('courses.index'),
+            'active' => request()->routeIs('courses.index')
         ]
     ];
 
