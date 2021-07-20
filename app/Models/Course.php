@@ -79,19 +79,19 @@ class Course extends Model
     }
 
     public function requirements(){
-        $this->hasMany(Requirement::class);
+        return $this->hasMany(Requirement::class);
     }
 
     public function goals(){
-        $this->hasMany(Goal::class);
+        return $this->hasMany(Goal::class);
     }
 
     public function audiences(){
-        $this->hasMany(Audience::class);
+        return $this->hasMany(Audience::class);
     }
 
     public function sections(){
-        $this->hasMany(Section::class);
+        return $this->hasMany(Section::class);
     }
 
     // relacion uno a uno polimorfica
