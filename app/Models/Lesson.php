@@ -17,9 +17,8 @@ class Lesson extends Model
     }
 
     //relacion uno a uno
-    public function description()
-    {
-        return $this->hasOne(description::class);
+    public function description(){
+        return $this->hasOne('App\Models\Description');
     }
 
     //relacion uno a muchos inversa
@@ -33,28 +32,28 @@ class Lesson extends Model
         return $this->belongsTo(Plaform::class);
     }
 
-    //relacion muchos a muchos
+   //Relacion muchos a muchos
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany('App\Models\User');
     }
 
     //Relacion uno a uno polimorfica
 
     public function resources()
     {
-        return $this->morphOne('App\Models\Resource','resourceable');
+        return $this->morphOne(Resource::class,'resourceable');
     }
 
     //Relacion uno a muchos polimorfica
 
     public function comments()
     {
-        return $this->morphMany('App\Models\Comment','commentable');
+        return $this->morphMany(Comment::class,'commentable');
     }
 
     public function FunctionName()
     {
-        return $this->morphMany('App\Models\Reaction','reactionable');
+        return $this->morphMany(Reaction::class,'reactionable');
     }
 }

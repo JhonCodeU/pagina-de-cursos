@@ -6,9 +6,13 @@ use App\Models\Course;
 use App\Models\Lesson;
 use Livewire\Component;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class CourseStatus extends Component
 {
-    public $course, $current, $index, $previous, $next;
+    use AuthorizesRequests;
+
+    public $course, $current;
 
     //se activa una vez
     public function mount(Course $course){
@@ -19,22 +23,15 @@ class CourseStatus extends Component
             if (!$lesson->completed) {
                 $this->current = $lesson;
 
-                //index
-                $this->index = $course->lessons->search($lesson);
-
-                if ($this->index != 0) {
-                    //previous
-                    $this->previous = $course->lessons[$this->index - 1];
-                }else{
-                    $this->previous = $course->lessons[$this->index + 1];
-                }
-
-                //next
-                $this->next = $course->lessons[$this->index + 1];
-
                 break;
             }
         }
+
+        if (!$this->current) {
+            $this->current = $course->lessons->last();
+        }
+
+        $this->authorize('enrolled',$course);
     }
 
     public function render()
@@ -42,22 +39,65 @@ class CourseStatus extends Component
         return view('livewire.course-status');
     }
 
+    //Metodos
+
     public function changeLesson(Lesson $lesson)
     {
         $this->current = $lesson;
         $this->index = $this->course->lessons->pluck('id')->search($lesson->id);
+    }
 
+    public function completed()
+    {
+        if ($this->current->completed) {
+            //Eliminar registro
+            $this->current->users()->detach(auth()->user()->id);
+        }else{
+            //Crear registration
+            $this->current->users()->attach(auth()->user()->id);
+        }
+
+        $this->current = Lesson::find($this->current->id);
+        $this->course = Course::find($this->course->id);
+    }
+
+    //Propiedades
+
+    public function getIndexProperty()
+    {
+        return $this->course->lessons->pluck('id')->search($this->current->id);
+    }
+
+    public function getPreviousProperty()
+    {
         if ($this->index == 0) {
-            $this->previous = null;
+            return null;
         }else{
-            $this->previous = $this->course->lessons[$this->index - 1];
+            return $this->course->lessons[$this->index - 1];
         }
+    }
 
+    public function getNextProperty()
+    {
+        
         if ($this->index == $this->course->lessons->count() - 1) {
-            $this->next == null;
+            return null;
         }else{
-            $this->next = $this->course->lessons[$this->index + 1];
+            return $this->course->lessons[$this->index + 1];
+        }
+    }
+
+    public function getAdvanceProperty()
+    {
+        $count = 0;
+        foreach ($this->course->lessons as $lesson) {
+            if ($lesson->completed) {
+                $count++;
+            }
         }
 
+        $advanced = ($count * 100)/($this->course->count());
+
+        return round($advanced, 2);
     }
 }

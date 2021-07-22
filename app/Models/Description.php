@@ -14,6 +14,6 @@ class Description extends Model
     //relacion uno a uno inversa
     public function lesson()
     {
-        return $this->belongsTo(Lesson::class);
+        return $this->belongsTo('App\Models\Lesson');
     }
 }
