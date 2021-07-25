@@ -96,7 +96,7 @@ class CourseStatus extends Component
             }
         }
 
-        $advanced = ($count * 100)/($this->course->count());
+        $advanced = ($count * 100)/($this->course->lessons->count());
 
         return round($advanced, 2);
     }
