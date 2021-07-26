@@ -1,8 +1,10 @@
 <div class="container">
 
     <x-table-responsive>
-        <div class="px-6 py-4">
-            <input wire:model="search" wire:keydown="clearPage" class="form-input w-full shadow-sm" type="text" placeholder="Ingrese el nombre de un curso">
+        <div class="px-6 py-4 flex">
+            <input wire:model="search" wire:keydown="clearPage" class="form-input w-full flex-1 shadow-sm" type="text" placeholder="Ingrese el nombre de un curso">
+
+            <a class="btn btn-danger ml-2"href="{{ route('instructor.courses.create') }}">Crear curso</a>
         </div>
 
         @if ($courses->count())
@@ -84,7 +86,7 @@
 
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                      <a href="{{ route('instructor.courses.edit', $course) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                     </td>
                   </tr>
                 @endforeach
