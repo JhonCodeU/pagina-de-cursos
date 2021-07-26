@@ -34,7 +34,11 @@
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="{{asset('storage/'. $course->image->url)}}" alt="">
+                          @isset($course->image->url)
+                            <img class="h-10 w-10 rounded-full object-cover object-center" src="{{asset('storage/'. $course->image->url)}}" alt="">
+                          @else
+                          <img id="picture" class="h-10 w-10 rounded-full object-cover object-center" src="https://images.pexels.com/photos/2228561/pexels-photo-2228561.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                          @endisset
                         </div>
                         <div class="ml-4">
                           <div class="text-sm font-medium text-gray-900">

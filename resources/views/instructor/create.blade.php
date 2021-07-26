@@ -5,11 +5,13 @@
                 <h2 class="text-2xl font-bold">Crear nuevo curso</h2>
                 <hr class="text-gray-600 mt-2 mb-6">
 
-                {!! Form::open(['route' => 'instructor.courses.store', 'files' => true]) !!}
+                {!! Form::open(['route' => 'instructor.courses.store', 'files' => true, 'autocomplete' => 'off']) !!}
                     @include('instructor.partials.form')
 
+                    {!! Form::hidden('user_id', auth()->user()->id) !!}
+
                     <div class="flex justify-end">
-                        {!! Form::submit('Crear nuevo curso', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Crear nuevo curso', ['class' => 'btn btn-primary cursor-pointer']) !!}
                     </div>
 
                 {!! Form::close() !!}

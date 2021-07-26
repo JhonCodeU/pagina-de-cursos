@@ -1,22 +1,38 @@
 <div class="mb-4">
     {!! Form::label('title', 'Titulo del curso') !!}
-    {!! Form::text('title', null, ['class' => 'form-input block w-full mt-1']) !!}
+    {!! Form::text('title', null, ['class' => 'form-input block w-full mt-1' . ($errors->has('title') ? 'border-red-600' : '')]) !!}
+
+    @error('title')
+        <strong class="text-sm text-red-600">{{$message}}</strong>
+    @enderror
 </div>
 
 <div class="mb-4">
     {!! Form::label('slug', 'Slug del curso') !!}
-    {!! Form::text('slug', null, ['class' => 'form-input block w-full mt-1']) !!}
+    {!! Form::text('slug', null, ['readonly'=>'readonly' , 'class' => 'form-input block w-full mt-1' . ($errors->has('slug') ? 'border-red-600' : '')]) !!}
+
+    @error('slug')
+        <strong class="text-sm text-red-600">{{$message}}</strong>
+    @enderror
 </div>
 
 
 <div class="mb-4">
     {!! Form::label('subtitle', 'Subtitle del curso') !!}
-    {!! Form::text('subtitle', null, ['class' => 'form-input block w-full mt-1']) !!}
+    {!! Form::text('subtitle', null, ['class' => 'form-input block w-full mt-1'. ($errors->has('subtitle') ? 'border-red-600' : '')]) !!}
+
+    @error('subtitle')
+        <strong class="text-sm text-red-600">{{$message}}</strong>
+    @enderror
 </div>
 
 <div class="mb-4">
     {!! Form::label('description', 'Description del curso') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-input block w-full mt-1']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-input block w-full mt-1' . ($errors->has('description') ? 'border-red-600' : '')]) !!}
+
+    @error('description')
+        <strong class="text-sm text-red-600">{{$message}}</strong>
+    @enderror
 </div>
 
 <div class="grid grid-cols-3 gap-4">
@@ -41,7 +57,7 @@
 
 <div class="grid grid-cols-2 gap-4">
     <figure>
-        @isset($course)
+        @isset($course->image->url)
             <img id="picture" class="w-full h-64 object-cover object-center" src="{{ asset('storage/' . $course->image->url)}}" alt="">
         @else
             <img id="picture" class="w-full h-64 object-cover object-center" src="https://images.pexels.com/photos/2228561/pexels-photo-2228561.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
