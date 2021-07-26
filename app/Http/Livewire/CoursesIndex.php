@@ -9,7 +9,7 @@ use App\Models\Level;
 
 use Livewire\WithPagination;
 
-class CourseIndex extends Component
+class CoursesIndex extends Component
 {
     use WithPagination;
 
@@ -27,7 +27,7 @@ class CourseIndex extends Component
             ->latest('id')
             ->paginate(8);
 
-        return view('livewire.course-index', [
+        return view('livewire.courses-index', [
             'courses' => $courses,
             'levels' => $levels,
             'categories' => $categories
