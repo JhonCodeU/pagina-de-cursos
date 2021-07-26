@@ -65,6 +65,10 @@
     </figure>
     <div>
         <p class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto a placeat explicabo, laboriosam repellat quis itaque, atque consequuntur nesciunt natus, soluta est ea nulla ipsam odio</p>
-        {!! Form::file('file', ['form-input w-full', 'id' => 'file']) !!}
+        {!! Form::file('file', ['form-input w-full', 'id' => 'file', 'accept' => 'image/*']) !!}
+
+        @error('file')
+            <strong class="text-sm text-red-600">{{$message}}</strong>
+        @enderror
     </div>
 </div>
