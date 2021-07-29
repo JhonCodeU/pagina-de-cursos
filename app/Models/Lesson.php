@@ -29,7 +29,7 @@ class Lesson extends Model
 
     public function platform()
     {
-        return $this->belongsTo(Plaform::class);
+        return $this->belongsTo(Plaform::class, 'id');
     }
 
    //Relacion muchos a muchos

@@ -28,6 +28,10 @@
                             <i class="fa fa-eraser cursor-pointer text-red-500" wire:click="destroy({{$item}})"></i>
                         </div>
                     </header>
+
+                    <div>
+                        @livewire('instructor.courses-lesson',['section' => $item], key($item->id))
+                    </div>
                 @endif
                 
             </div>
