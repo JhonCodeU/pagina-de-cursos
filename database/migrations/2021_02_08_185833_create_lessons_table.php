@@ -25,7 +25,6 @@ class CreateLessonsTable extends Migration
             $table->foreign('platform_id')->references('id')->on('plaforms')->onDelete('set null');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
 
-
             $table->timestamps();
         });
     }

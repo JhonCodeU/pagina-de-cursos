@@ -40,7 +40,7 @@ class Lesson extends Model
 
     //Relacion uno a uno polimorfica
 
-    public function resources()
+    public function resource()
     {
         return $this->morphOne(Resource::class,'resourceable');
     }
