@@ -170,4 +170,12 @@ class CourseController extends Controller
             'course' => $course,
         ]);
     }
+
+    public function status(Course $course)
+    {
+        $course->status = 2;
+        $course->save();
+
+        return back();
+    }
 }

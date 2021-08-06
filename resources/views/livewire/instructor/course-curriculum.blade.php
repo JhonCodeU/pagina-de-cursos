@@ -1,7 +1,4 @@
 <div>
-    <x-slot name="course">
-        {{$course->slug}}
-    </x-slot>
 
     <h2 class="text-2xl font-bold text-gray-500 ml-5 mt-4">Lecciones del curso</h2>
     <hr class="mt-2 mb-6">
