@@ -10,8 +10,8 @@ Route::resource('courses', CourseController::class)->names('courses');
 
 Route::redirect('','instructor/courses');
 
-Route::get('courses/{course}/curriculum',CourseCurriculum::class)->name('courses.curriculum');
+Route::get('courses/{course}/curriculum',CourseCurriculum::class)->middleware('can:Actualizar cursos')->name('courses.curriculum');
 
 Route::get('courses/{course}/goals', [CourseController::class, 'goals'])->name('courses.goals');
 
-Route::get('courses/{course}/students', CoursesStudents::class)->name('courses.students');
+Route::get('courses/{course}/students', CoursesStudents::class)->middleware('can:Actualizar cursos')->name('courses.students');

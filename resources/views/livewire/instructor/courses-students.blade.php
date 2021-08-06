@@ -3,14 +3,11 @@
         {{$course->slug}}
     </x-slot>
 
-    <h2 class="text-2xl font-bold my-4 ml-4">Estudiantes del curso</h2>'
-    
+    <h2 class="text-2xl font-bold mt-4 ml-4">Estudiantes del curso</h2>'
 
     <x-table-responsive>
-        <div class="px-6 py-4 flex">
-            <input wire:model="search" wire:keydown="clearPage" class="form-input w-full flex-1 shadow-sm" type="text" placeholder="Ingrese el nombre de un curso">
-
-            <a class="btn btn-danger ml-2"href="{{ route('instructor.courses.create') }}">Crear curso</a>
+        <div class="px-6 pb-4">
+            <input wire:model="search" class="form-input w-full flex-1 shadow-sm" type="text" placeholder="Ingrese el nombre de un estudiante">
         </div>
         {{$students}}
         @if ($students->count())
