@@ -25,7 +25,7 @@
                         <td>{{ $course->title}}</td>
                         <td>{{ $course->category->name}}</td>
                         <td>
-                            <a class="btn btn-primary"href="#">Revisar</a>
+                            <a href="{{ route('admin.courses.show', $course) }}">google</a>
                         </td>
                     </tr>
                     @endforeach

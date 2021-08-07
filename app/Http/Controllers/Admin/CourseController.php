@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
@@ -14,4 +13,9 @@ class CourseController extends Controller
         return view('admin.courses.index', ['courses' => $courses]);
     }
 
+    public function show(Course $course)
+    {
+        return $course;
+        //return view('admin.courses.show', ['course' => $course]);
+    }
 }
