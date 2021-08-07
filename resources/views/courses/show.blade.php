@@ -62,7 +62,7 @@
             </section>
                 <h1 class="font-bold text-3xl">Description</h1>
                 <div class="text-gray-700 text-base">
-                    {{$course->description}}
+                    {!!$course->description!!}
                 </div>
             <section>
 
